@@ -1,0 +1,21 @@
+
+
+.item-title {
+    font-size: 15px;
+    max-height: 40px;
+    overflow: hidden;
+    font-weight: 500;
+    line-height: 1.4;
+}
+.item-desc {    
+    font-size: 14px;
+    color: #666;
+    line-height: 1.4;
+    margin-top: 6px;
+    max-height: 20px;
+    overflow: hidden;
+}
+
+.full-spectrum .sp-palette {
+    max-width: 200px;
+}

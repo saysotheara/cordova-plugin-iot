@@ -1,0 +1,22 @@
+
+<ons-page ng-controller="DeviceController">
+    <ons-toolbar>
+        <div class="left"><ons-back-button>Back</ons-back-button></div>
+        <div class="center">{{ light.name }}</div>
+    </ons-toolbar>
+    <div style="margin-top: 20px; padding: 20px;">
+        <ons-button modifier="large" ng-click="onSwitchON()">Switch ON</ons-button> <br />
+        <ons-button modifier="large" ng-click="onSwitchOFF()">Switch OFF</ons-button>
+
+        <div style="margin-top: 20px;">
+        
+        <color-picker ng-model="color" color-picker-format="'hex'" style="width: 100%"></color-picker>
+        
+<!--
+            <input type="text" ng-model="color" ng-init="color = '#f05a28'">
+            <color-picker ng-model="color"></color-picker>
+-->            
+        </div>
+    </div>
+    
+</ons-page>

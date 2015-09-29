@@ -1,0 +1,47 @@
+
+<ons-modal var="modal">
+    <i class="fa fa-spinner fa-spin fa-pulse" style="font-size: 28px;"></i>
+    <br>
+    <br>
+    Searching ...
+    <br>
+    <br>
+    Tap on Hue button to authorize...
+</ons-modal>
+
+<ons-page ng-controller="SpecController">
+    <ons-toolbar>
+        <div class="left"><ons-back-button>Back</ons-back-button></div>
+        <div class="center">DeviceConnect Spec.</div>
+    </ons-toolbar>
+
+    <ons-list>
+        <ons-list-item modifier="chevron" ng-repeat="item in items" ng-click="onItemSelect(item, $index)">
+            {{ item.name }}
+        </ons-list-item>
+    </ons-list>
+
+    <ons-list ng-if="services.length>0" style="margin-top: 10px;">
+        <ons-list-item modifier="chevron" ng-repeat="item in services" ng-click="onServiceSelect(item, $index)">
+            <div>
+                {{ item.name }} - {{ item.type }}
+            </div>
+        </ons-list-item>
+    </ons-list>
+
+    <ons-list ng-if="features.length>0" style="margin-top: 10px;">
+        <ons-list-item modifier="chevron" ng-repeat="item in features" ng-click="onFeatureSelect(item, $index)">
+            <div>
+                {{ item.lightId }} - {{ item.name }}
+            </div>
+        </ons-list-item>
+        <ons-list-item modifier="chevron" ng-click="onGroupSelect()">
+            <div>
+                Create light group
+            </div>
+        </ons-list-item>
+    </ons-list>
+
+
+
+</ons-page>

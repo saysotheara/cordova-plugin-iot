@@ -1,0 +1,33 @@
+{
+  "name": "monaca-plugin-deviceconnect",
+  "version": "1.0.0",
+  "description": "DeviceConnect WebAPI is WebAPI which operates as a virtual server on a smart phone. It can use easily various wearable devices and an IoT device by unific description from a web browser or an application.",
+  "cordova": {
+    "id": "monaca-plugin-deviceconnect",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DeviceConnect/DeviceConnect-Android.git"
+  },
+  "keywords": [
+    "ecosystem:moanca",
+    "ecosystem:cordova",
+    "ecosystem:phonegap",
+    "cordova-android"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "author": "NTT Docomo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DeviceConnect/DeviceConnect-Android/issues"
+  },
+  "homepage": "https://github.com/DeviceConnect/DeviceConnect-Docs"
+}

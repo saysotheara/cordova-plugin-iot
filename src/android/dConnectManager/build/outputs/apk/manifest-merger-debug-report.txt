@@ -1,0 +1,274 @@
+-- Merging decision tree log ---
+manifest
+ADDED from AndroidManifest.xml:2:1
+	xmlns:android
+		ADDED from AndroidManifest.xml:2:11
+	package
+		ADDED from AndroidManifest.xml:3:5
+	android:versionName
+		ADDED from AndroidManifest.xml:5:5
+	android:versionCode
+		ADDED from AndroidManifest.xml:4:5
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+uses-sdk
+ADDED from AndroidManifest.xml:7:5
+MERGED from dConnectManager:dconnect-device-plugin-sdk:unspecified:7:5
+MERGED from dConnectManager:dconnect-sdk-for-android:unspecified:7:5
+MERGED from dConnectManager:dconnect-server-nano-httpd:unspecified:7:5
+	android:targetSdkVersion
+		ADDED from AndroidManifest.xml:9:9
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+	android:minSdkVersion
+		ADDED from AndroidManifest.xml:8:9
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+uses-permission#android.permission.INTERNET
+ADDED from AndroidManifest.xml:11:5
+	android:name
+		ADDED from AndroidManifest.xml:11:22
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from AndroidManifest.xml:12:5
+	android:name
+		ADDED from AndroidManifest.xml:12:22
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from AndroidManifest.xml:13:5
+	android:name
+		ADDED from AndroidManifest.xml:13:22
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from AndroidManifest.xml:14:5
+	android:name
+		ADDED from AndroidManifest.xml:14:22
+uses-permission#com.android.browser.permission.READ_HISTORY_BOOKMARKS
+ADDED from AndroidManifest.xml:15:5
+	android:name
+		ADDED from AndroidManifest.xml:15:22
+application
+ADDED from AndroidManifest.xml:17:5
+MERGED from dConnectManager:dconnect-device-plugin-sdk:unspecified:11:5
+MERGED from dConnectManager:dconnect-sdk-for-android:unspecified:11:5
+	android:label
+		ADDED from AndroidManifest.xml:20:9
+	android:allowBackup
+		ADDED from AndroidManifest.xml:18:9
+	android:icon
+		ADDED from AndroidManifest.xml:19:9
+	android:theme
+		ADDED from AndroidManifest.xml:21:9
+activity#org.deviceconnect.android.manager.DConnectLaunchActivity
+ADDED from AndroidManifest.xml:24:9
+	android:label
+		ADDED from AndroidManifest.xml:26:13
+	android:excludeFromRecents
+		ADDED from AndroidManifest.xml:27:13
+	android:name
+		ADDED from AndroidManifest.xml:25:13
+	android:launchMode
+		ADDED from AndroidManifest.xml:28:13
+intent-filter#android.intent.action.VIEW+android.intent.category.BROWSABLE+android.intent.category.DEFAULT
+ADDED from AndroidManifest.xml:29:13
+action#android.intent.action.VIEW
+ADDED from AndroidManifest.xml:30:17
+	android:name
+		ADDED from AndroidManifest.xml:30:25
+category#android.intent.category.DEFAULT
+ADDED from AndroidManifest.xml:31:17
+	android:name
+		ADDED from AndroidManifest.xml:31:27
+category#android.intent.category.BROWSABLE
+ADDED from AndroidManifest.xml:32:17
+	android:name
+		ADDED from AndroidManifest.xml:32:27
+data
+ADDED from AndroidManifest.xml:33:17
+	android:host
+		ADDED from AndroidManifest.xml:34:21
+	android:path
+		ADDED from AndroidManifest.xml:35:21
+	android:scheme
+		ADDED from AndroidManifest.xml:36:21
+activity#org.deviceconnect.android.manager.policy.WhitelistActivity
+ADDED from AndroidManifest.xml:51:9
+	android:label
+		ADDED from AndroidManifest.xml:53:13
+	android:name
+		ADDED from AndroidManifest.xml:52:13
+activity#org.deviceconnect.android.manager.setting.SettingActivity
+ADDED from AndroidManifest.xml:57:9
+	android:label
+		ADDED from AndroidManifest.xml:59:13
+	android:name
+		ADDED from AndroidManifest.xml:58:13
+	android:launchMode
+		ADDED from AndroidManifest.xml:60:13
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from AndroidManifest.xml:61:13
+action#android.intent.action.MAIN
+ADDED from AndroidManifest.xml:62:17
+	android:name
+		ADDED from AndroidManifest.xml:62:25
+category#android.intent.category.LAUNCHER
+ADDED from AndroidManifest.xml:63:17
+	android:name
+		ADDED from AndroidManifest.xml:63:27
+activity#org.deviceconnect.android.manager.setting.KeywordDialogAcitivty
+ADDED from AndroidManifest.xml:68:9
+	android:label
+		ADDED from AndroidManifest.xml:70:13
+	android:theme
+		ADDED from AndroidManifest.xml:71:13
+	android:name
+		ADDED from AndroidManifest.xml:69:13
+activity#org.deviceconnect.android.manager.setting.ReqResDebugActivity
+ADDED from AndroidManifest.xml:75:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:79:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:78:13
+	android:label
+		ADDED from AndroidManifest.xml:77:13
+	android:name
+		ADDED from AndroidManifest.xml:76:13
+activity#org.deviceconnect.android.observer.activity.WarningDialogActivity
+ADDED from AndroidManifest.xml:83:9
+	android:label
+		ADDED from AndroidManifest.xml:85:13
+	android:theme
+		ADDED from AndroidManifest.xml:86:13
+	android:name
+		ADDED from AndroidManifest.xml:84:13
+receiver#org.deviceconnect.android.manager.DConnectBroadcastReceiver
+ADDED from AndroidManifest.xml:90:9
+	android:name
+		ADDED from AndroidManifest.xml:90:19
+intent-filter#org.deviceconnect.action.DELETE+org.deviceconnect.action.EVENT+org.deviceconnect.action.GET+org.deviceconnect.action.POST+org.deviceconnect.action.PUT+org.deviceconnect.action.RESPONSE
+ADDED from AndroidManifest.xml:91:13
+action#org.deviceconnect.action.GET
+ADDED from AndroidManifest.xml:92:17
+	android:name
+		ADDED from AndroidManifest.xml:92:25
+action#org.deviceconnect.action.PUT
+ADDED from AndroidManifest.xml:93:17
+	android:name
+		ADDED from AndroidManifest.xml:93:25
+action#org.deviceconnect.action.POST
+ADDED from AndroidManifest.xml:94:17
+	android:name
+		ADDED from AndroidManifest.xml:94:25
+action#org.deviceconnect.action.DELETE
+ADDED from AndroidManifest.xml:95:17
+	android:name
+		ADDED from AndroidManifest.xml:95:25
+action#org.deviceconnect.action.RESPONSE
+ADDED from AndroidManifest.xml:96:17
+	android:name
+		ADDED from AndroidManifest.xml:96:25
+action#org.deviceconnect.action.EVENT
+ADDED from AndroidManifest.xml:97:17
+	android:name
+		ADDED from AndroidManifest.xml:97:25
+receiver#org.deviceconnect.android.manager.receiver.PackageManageReceiver
+ADDED from AndroidManifest.xml:102:9
+	android:name
+		ADDED from AndroidManifest.xml:102:19
+intent-filter#android.intent.action.PACKAGE_ADDED+android.intent.action.PACKAGE_CHANGED+android.intent.action.PACKAGE_REMOVED
+ADDED from AndroidManifest.xml:103:13
+action#android.intent.action.PACKAGE_ADDED
+ADDED from AndroidManifest.xml:104:17
+	android:name
+		ADDED from AndroidManifest.xml:104:25
+action#android.intent.action.PACKAGE_REMOVED
+ADDED from AndroidManifest.xml:105:17
+	android:name
+		ADDED from AndroidManifest.xml:105:25
+action#android.intent.action.PACKAGE_CHANGED
+ADDED from AndroidManifest.xml:106:17
+	android:name
+		ADDED from AndroidManifest.xml:106:25
+service#org.deviceconnect.android.manager.DConnectService
+ADDED from AndroidManifest.xml:114:9
+	android:process
+		ADDED from AndroidManifest.xml:117:13
+	android:exported
+		ADDED from AndroidManifest.xml:116:13
+	android:name
+		ADDED from AndroidManifest.xml:115:13
+provider#org.deviceconnect.android.provider.FileProvider
+ADDED from AndroidManifest.xml:121:9
+	android:exported
+		ADDED from AndroidManifest.xml:124:13
+	android:authorities
+		ADDED from AndroidManifest.xml:123:13
+	android:name
+		ADDED from AndroidManifest.xml:122:13
+meta-data#filelocation
+ADDED from AndroidManifest.xml:125:13
+	android:resource
+		ADDED from AndroidManifest.xml:127:17
+	android:name
+		ADDED from AndroidManifest.xml:126:17
+activity#org.deviceconnect.android.localoauth.activity.ConfirmAuthActivity
+ADDED from AndroidManifest.xml:132:9
+	android:exported
+		ADDED from AndroidManifest.xml:135:13
+	android:excludeFromRecents
+		ADDED from AndroidManifest.xml:134:13
+	android:name
+		ADDED from AndroidManifest.xml:133:13
+activity#org.deviceconnect.android.localoauth.activity.AccessTokenListActivity
+ADDED from AndroidManifest.xml:139:9
+	android:exported
+		ADDED from AndroidManifest.xml:141:13
+	android:name
+		ADDED from AndroidManifest.xml:140:13
+activity#org.deviceconnect.android.manager.setting.DevicePluginListActivity
+ADDED from AndroidManifest.xml:145:9
+	android:label
+		ADDED from AndroidManifest.xml:147:13
+	android:name
+		ADDED from AndroidManifest.xml:146:13
+activity#org.deviceconnect.android.manager.setting.DevicePluginInfoActivity
+ADDED from AndroidManifest.xml:150:9
+	android:label
+		ADDED from AndroidManifest.xml:152:13
+	android:name
+		ADDED from AndroidManifest.xml:151:13
+service#org.deviceconnect.android.localoauth.LocalOAuth2Service
+ADDED from AndroidManifest.xml:156:9
+	android:process
+		ADDED from AndroidManifest.xml:159:13
+	android:exported
+		ADDED from AndroidManifest.xml:158:13
+	android:name
+		ADDED from AndroidManifest.xml:157:13
+service#org.deviceconnect.android.observer.DConnectObservationService
+ADDED from AndroidManifest.xml:164:9
+	android:process
+		ADDED from AndroidManifest.xml:167:13
+	android:exported
+		ADDED from AndroidManifest.xml:166:13
+	android:name
+		ADDED from AndroidManifest.xml:165:13
+receiver#org.deviceconnect.android.observer.receiver.ObserverReceiver
+ADDED from AndroidManifest.xml:171:9
+	android:name
+		ADDED from AndroidManifest.xml:171:19
+intent-filter#com.android.vending.INSTALL_REFERRER+org.deviceconnect.android.intent.action.observer.CHECK+org.deviceconnect.android.intent.action.observer.START+org.deviceconnect.android.intent.action.observer.STOP
+ADDED from AndroidManifest.xml:172:13
+action#com.android.vending.INSTALL_REFERRER
+ADDED from AndroidManifest.xml:173:17
+	android:name
+		ADDED from AndroidManifest.xml:173:25
+action#org.deviceconnect.android.intent.action.observer.START
+ADDED from AndroidManifest.xml:174:17
+	android:name
+		ADDED from AndroidManifest.xml:174:25
+action#org.deviceconnect.android.intent.action.observer.STOP
+ADDED from AndroidManifest.xml:175:17
+	android:name
+		ADDED from AndroidManifest.xml:175:25
+action#org.deviceconnect.android.intent.action.observer.CHECK
+ADDED from AndroidManifest.xml:176:17
+	android:name
+		ADDED from AndroidManifest.xml:176:25

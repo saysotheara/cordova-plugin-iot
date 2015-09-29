@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/dConnectManager.iml" filepath="$PROJECT_DIR$/dConnectManager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../dConnectDevicePlugin/dConnectDevicePluginSDK/dconnect-device-plugin-sdk.iml" filepath="$PROJECT_DIR$/../../dConnectDevicePlugin/dConnectDevicePluginSDK/dconnect-device-plugin-sdk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../dConnectSDK/dConnectSDKForAndroid/dconnect-sdk-for-android.iml" filepath="$PROJECT_DIR$/../../dConnectSDK/dConnectSDKForAndroid/dconnect-sdk-for-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../dConnectServerNanoHttpd/dconnect-server-nano-httpd.iml" filepath="$PROJECT_DIR$/../dConnectServerNanoHttpd/dconnect-server-nano-httpd.iml" />
+    </modules>
+  </component>
+</project>

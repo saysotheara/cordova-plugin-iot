@@ -1,0 +1,9 @@
+// GENERATED FILE - DO NOT EDIT
+include ":"
+include ":CordovaLib"
+include 'dconnect-sdk-for-android'
+project(':dconnect-sdk-for-android').projectDir = new File('libs/dConnectSDKForAndroid')
+include 'dconnect-device-plugin-sdk'
+project(':dconnect-device-plugin-sdk').projectDir = new File('libs/dConnectDevicePluginSDK')
+include 'dconnect-server-nano-httpd'
+project(':dconnect-server-nano-httpd').projectDir = new File('libs/dConnectServerNanoHttpd')
