@@ -6,7 +6,7 @@
  * Copyright (c) 2011, IBM Corporation
  * Copyright (c) 2013, Maciej Nux Jaros
  */
-package org.deviceconnect.android.manager.plugin;
+package io.monaca.plugin;
 
 import android.content.Context;
 import android.content.Intent;

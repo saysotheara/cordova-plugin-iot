@@ -25,7 +25,7 @@
 
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="DeviceConnect">
-                <param name="android-package" value="org.deviceconnect.android.manager.plugin.DeviceConnect" />
+                <param name="android-package" value="io.monaca.plugin.DeviceConnect" />
             </feature>
         </config-file>
 
@@ -33,7 +33,7 @@
 
         <hook type="after_plugin_install" src="src/android/libs/after_plugin.js" />
 
-        <source-file src="src/android/org/deviceconnect/android/manager/plugin/DeviceConnect.java" target-dir="src/org/deviceconnect/android/manager/plugin" />
+        <source-file src="src/android/io/monaca/plugin/DeviceConnect.java" target-dir="src/io/monaca/plugin" />
 
     </platform>
 
