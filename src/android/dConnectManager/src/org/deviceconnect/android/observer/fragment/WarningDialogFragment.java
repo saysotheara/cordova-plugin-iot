@@ -7,7 +7,8 @@
 package org.deviceconnect.android.observer.fragment;
 
 import java.util.List;
-import org.deviceconnect.android.manager.R;
+
+import org.deviceconnect.android.manager.plugin.FakeR;
 import org.deviceconnect.android.observer.DConnectObservationService;
 import org.deviceconnect.android.observer.receiver.ObserverReceiver;
 import android.annotation.SuppressLint;
@@ -42,6 +43,8 @@ public class WarningDialogFragment extends DialogFragment {
      */
     private boolean mDisableFlg;
 
+    private static FakeR fakeR;
+
     @SuppressLint("InflateParams")
     @Override
     public Dialog onCreateDialog(final Bundle savedInstanceState) {
@@ -49,26 +52,26 @@ public class WarningDialogFragment extends DialogFragment {
         String packageName = getActivity().getIntent().getStringExtra(DConnectObservationService.PARAM_PACKAGE_NAME);
         int port = getActivity().getIntent().getIntExtra(DConnectObservationService.PARAM_PORT, -1);
         LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View view = inflater.inflate(R.layout.activity_warning_dialog, null);
-        final TextView appNameView = (TextView) view.findViewById(R.id.alert_message);
-        final ImageView appIconView = (ImageView) view.findViewById(R.id.alert_icon);
+        final View view = inflater.inflate(fakeR.getId("layout", "activity_warning_dialog"), null);
+        final TextView appNameView = (TextView) view.findViewById(fakeR.getId("id", "alert_message"));
+        final ImageView appIconView = (ImageView) view.findViewById(fakeR.getId("id", "alert_icon"));
         String appName = getAppName(packageName);
         Drawable icon = null;
         try {
             icon = getActivity().getPackageManager().getApplicationIcon(packageName);
         } catch (NameNotFoundException e) {
-            icon = getActivity().getResources().getDrawable(R.drawable.ic_launcher);
+            icon = getActivity().getResources().getDrawable(fakeR.getId("drawable", "ic_launcher"));
         }
         appNameView.setText(appName);
         appIconView.setImageDrawable(icon);
-        String tempMessage = String.format(getString(R.string.activity_warning_mess), port);
+        String tempMessage = String.format(getString(fakeR.getId("string", "activity_warning_mess")), port);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        Dialog dialog = builder.setTitle(getString(R.string.activity_warning)).setMessage(tempMessage).setView(view)
-                .setPositiveButton(R.string.activity_warning_ok, new OnClickListener() {
+        Dialog dialog = builder.setTitle(getString(fakeR.getId("string", "activity_warning"))).setMessage(tempMessage).setView(view)
+                .setPositiveButton(fakeR.getId("string", "activity_warning_ok"), new OnClickListener() {
 
                     @Override
                     public void onClick(final DialogInterface dialog, final int which) {
-                        CheckBox box = (CheckBox) view.findViewById(R.id.disable_observer);
+                        CheckBox box = (CheckBox) view.findViewById(fakeR.getId("id", "disable_observer"));
                         mDisableFlg = box.isChecked();
                         dismiss();
                     }

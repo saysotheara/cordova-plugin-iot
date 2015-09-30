@@ -31,9 +31,8 @@ import org.apache.http.entity.mime.content.AbstractContentBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-import org.deviceconnect.android.manager.BuildConfig;
 import org.deviceconnect.android.manager.DConnectSettings;
-import org.deviceconnect.android.manager.R;
+import org.deviceconnect.android.manager.plugin.FakeR;
 import org.deviceconnect.android.profile.ServiceDiscoveryProfile;
 import org.deviceconnect.message.DConnectMessage;
 import org.deviceconnect.message.DConnectMessage.ErrorCode;
@@ -183,14 +182,16 @@ public class ReqResDebugActivity extends Activity implements
         "*"
     };
 
+    private static FakeR fakeR;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPref = getSharedPreferences(PREF_KEY, Activity.MODE_PRIVATE);
         mEditor = mPref.edit();
-        getActionBar().setTitle(R.string.app_name);
-        setContentView(R.layout.activity_debug_main);
-        findViewById(R.id.reqSend).setOnClickListener(this);
+        getActionBar().setTitle(fakeR.getId("string", "app_name"));
+        setContentView(fakeR.getId("layout", "activity_debug_main"));
+        findViewById(fakeR.getId("id", "reqSend")).setOnClickListener(this);
         initUI();
     }
 
@@ -212,27 +213,27 @@ public class ReqResDebugActivity extends Activity implements
 
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_debug_main, menu);
+        getMenuInflater().inflate(fakeR.getId("menu", "activity_debug_main"), menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == fakeR.getId("id", "action_settings")) {
             Intent intent = new Intent(this, SettingActivity.class);
             startActivity(intent);
-        } else if (id == R.id.action_search) {
+        } else if (id == fakeR.getId("id", "action_search")) {
             mListAdapter.clear();
             executeNetworkServiceDiscovery();
-        } else if (id == R.id.action_access_token) {
+        } else if (id == fakeR.getId("id", "action_access_token")) {
             String clientId = mPref.getString(KEY_CLIENT_ID, null);
             if (clientId == null) {
                 checkAuthorization(null);
             } else {
                 requestAccessToken(clientId, null);
             }
-        } else if (id == R.id.action_session_key) {
+        } else if (id == fakeR.getId("id", "action_session_key")) {
             inputSessionKey();
         }
         return true;
@@ -243,9 +244,9 @@ public class ReqResDebugActivity extends Activity implements
         mListAdapter.clear();
 
         int id = v.getId();
-        if (id == R.id.reqSend) {
+        if (id == fakeR.getId("id", "reqSend")) {
             executeHttpRequest();
-        } else if (id == R.id.reqWesocket) {
+        } else if (id == fakeR.getId("id", "reqWesocket")) {
             if (mWebsocketBtn.isChecked()) {
                 execWebsocket();
             } else {
@@ -262,15 +263,15 @@ public class ReqResDebugActivity extends Activity implements
         mListAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
 
         // リスト設定
-        ListView listView = (ListView) findViewById(R.id.reqResList);
+        ListView listView = (ListView) findViewById(fakeR.getId("id", "reqResList"));
         listView.setAdapter(mListAdapter);
         initSpinner();
 
         // パラメータを入力するテキスト
-        mTextPath = (EditText) findViewById(R.id.reqPath);
+        mTextPath = (EditText) findViewById(fakeR.getId("id", "reqPath"));
 
         // URL選択
-        mSelectUrl = (CheckBox) findViewById(R.id.isUrl);
+        mSelectUrl = (CheckBox) findViewById(fakeR.getId("id", "isUrl"));
         mSelectUrl.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(final CompoundButton buttonView, 
@@ -279,7 +280,7 @@ public class ReqResDebugActivity extends Activity implements
             }
         });
 
-        mWebsocketBtn = (ToggleButton) findViewById(R.id.reqWesocket);
+        mWebsocketBtn = (ToggleButton) findViewById(fakeR.getId("id", "reqWesocket"));
         mWebsocketBtn.setOnClickListener(this);
     }
 
@@ -288,26 +289,26 @@ public class ReqResDebugActivity extends Activity implements
      */
     private void initSpinner() {
         ArrayAdapter<CharSequence> adapterHttpMethod = ArrayAdapter.createFromResource(
-                        this, R.array.http_methods, android.R.layout.simple_spinner_item);
+                        this, fakeR.getId("array", "http_methods"), android.R.layout.simple_spinner_item);
         adapterHttpMethod.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         ArrayAdapter<CharSequence> adapterProfile = ArrayAdapter.createFromResource(
-                this, R.array.dconnect_profile_list, android.R.layout.simple_spinner_item);
+                this, fakeR.getId("array", "dconnect_profile_list"), android.R.layout.simple_spinner_item);
         adapterProfile.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                this, R.array.string_empty, android.R.layout.simple_spinner_item);
-        mHM = (Spinner) findViewById(R.id.reqMethod);
+                this, fakeR.getId("array", "string_empty"), android.R.layout.simple_spinner_item);
+        mHM = (Spinner) findViewById(fakeR.getId("id", "reqMethod"));
         mHM.setAdapter(adapterHttpMethod);
         mHM.setOnItemSelectedListener(this);
-        mProf = (Spinner) findViewById(R.id.reqProfile);
+        mProf = (Spinner) findViewById(fakeR.getId("id", "reqProfile"));
         mProf.setAdapter(adapterProfile);
         mProf.setOnItemSelectedListener(this);
-        mInter = (Spinner) findViewById(R.id.reqInterfaces);
+        mInter = (Spinner) findViewById(fakeR.getId("id", "reqInterfaces"));
         mInter.setOnItemSelectedListener(this);
         mInter.setAdapter(adapter);
-        mAttrib = (Spinner) findViewById(R.id.reqAttribute);
+        mAttrib = (Spinner) findViewById(fakeR.getId("id", "reqAttribute"));
         mAttrib.setOnItemSelectedListener(this);
         mAttrib.setAdapter(adapter);
-        mDI = (Spinner) findViewById(R.id.reqDeviceid);
+        mDI = (Spinner) findViewById(fakeR.getId("id", "reqDeviceid"));
         mDI.setOnItemSelectedListener(this);
         mDI.setAdapter(adapter);
     }
@@ -321,9 +322,9 @@ public class ReqResDebugActivity extends Activity implements
         mInter.setEnabled(enabled);
         mAttrib.setEnabled(enabled);
         if (enabled) {
-            mTextPath.setHint(R.string.url_hint1);
+            mTextPath.setHint(fakeR.getId("string", "url_hint1"));
         } else {
-            mTextPath.setHint(R.string.url_hint2);
+            mTextPath.setHint(fakeR.getId("string", "url_hint2"));
         }
     }
 
@@ -896,9 +897,9 @@ public class ReqResDebugActivity extends Activity implements
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             mDI.setAdapter(adapter);
         } catch (JSONException e) {
-            if (BuildConfig.DEBUG) {
-                e.printStackTrace();
-            }
+//            if (BuildConfig.DEBUG) {
+//                e.printStackTrace();
+//            }
         }
     }
 
@@ -907,7 +908,7 @@ public class ReqResDebugActivity extends Activity implements
             final int position, final long pos) {
         int id = parent.getId();
         Spinner spinner = (Spinner) parent;
-        if (id == R.id.reqProfile) {
+        if (id == fakeR.getId("id", "reqProfile")) {
             String profileName = spinner.getSelectedItem().toString();
             if (!profileName.equals("")) {
                 int resInterfacesId = getResources()

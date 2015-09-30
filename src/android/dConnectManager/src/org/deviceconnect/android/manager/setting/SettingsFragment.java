@@ -30,7 +30,7 @@ import android.preference.SwitchPreference;
 import org.deviceconnect.android.manager.DConnectService;
 import org.deviceconnect.android.manager.DevicePlugin;
 import org.deviceconnect.android.manager.DevicePluginManager;
-import org.deviceconnect.android.manager.R;
+import org.deviceconnect.android.manager.plugin.FakeR;
 import org.deviceconnect.android.manager.setting.OpenSourceLicenseFragment.OpenSourceSoftware;
 import org.deviceconnect.android.observer.DConnectObservationService;
 import org.deviceconnect.android.observer.receiver.ObserverReceiver;
@@ -71,10 +71,12 @@ public class SettingsFragment extends PreferenceFragment
     /** Originブロック設定チェックボックス. */
     private CheckBoxPreference mCheckBoxOriginBlockingPreferences;
 
+    private static FakeR fakeR;
+
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.settings);
+        addPreferencesFromResource(fakeR.getId("xml", "settings"));
 
         // SharedPreferenceをマルチプロセスでも動作する設定にする
         getPreferenceManager().setSharedPreferencesMode(Context.MODE_MULTI_PROCESS);
@@ -82,17 +84,17 @@ public class SettingsFragment extends PreferenceFragment
         // オープソースのリストを準備
         mOpenSourceList = new ArrayList<OpenSourceSoftware>();
         mOpenSourceList.add(OpenSourceLicenseFragment.createOpenSourceSoftware(
-                "android-support-v4.jar", R.raw.andorid_support_v4));
+                "android-support-v4.jar", fakeR.getId("raw", "andorid_support_v4")));
         mOpenSourceList.add(OpenSourceLicenseFragment.createOpenSourceSoftware(
-                "apache-mime4j-0.6.jar", R.raw.apache_mime4j));
+                "apache-mime4j-0.6.jar", fakeR.getId("raw", "apache_mime4j")));
         mOpenSourceList.add(OpenSourceLicenseFragment.createOpenSourceSoftware(
-                "android-support-v4-preferencefragment", R.raw.android_support_v4_preferencefragment));
+                "android-support-v4-preferencefragment", fakeR.getId("raw", "android_support_v4_preferencefragment")));
         mOpenSourceList.add(OpenSourceLicenseFragment.createOpenSourceSoftware(
-                "Java WebSocket", R.raw.java_websocket));
+                "Java WebSocket", fakeR.getId("raw", "java_websocket")));
 
         PreferenceScreen versionPreferences = (PreferenceScreen)
                 getPreferenceScreen().findPreference(
-                        getString(R.string.key_settings_about_appinfo));
+                        getString(fakeR.getId("string", "key_settings_about_appinfo")));
         try {
             versionPreferences.setSummary((getActivity().getPackageManager()
                     .getPackageInfo(getActivity().getPackageName(), 0).versionName));
@@ -101,13 +103,13 @@ public class SettingsFragment extends PreferenceFragment
         }
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
-        String keyword = sp.getString(getString(R.string.key_settings_dconn_keyword), null);
+        String keyword = sp.getString(getString(fakeR.getId("string", "key_settings_dconn_keyword")), null);
         if (keyword == null || keyword.length() <= 0) {
             keyword = createKeyword();
         }
 
         EditTextPreference editKeywordPreferences = (EditTextPreference)
-                getPreferenceScreen().findPreference(getString(R.string.key_settings_dconn_keyword));
+                getPreferenceScreen().findPreference(getString(fakeR.getId("string", "key_settings_dconn_keyword")));
         editKeywordPreferences.setOnPreferenceChangeListener(this);
         editKeywordPreferences.setSummary(keyword);
         editKeywordPreferences.setDefaultValue(keyword);
@@ -116,39 +118,39 @@ public class SettingsFragment extends PreferenceFragment
 
         // SSLのON/OFF
         mCheckBoxSslPreferences = (CheckBoxPreference)
-                getPreferenceScreen().findPreference(getString(R.string.key_settings_dconn_ssl));
+                getPreferenceScreen().findPreference(getString(fakeR.getId("string", "key_settings_dconn_ssl")));
         mCheckBoxSslPreferences.setOnPreferenceChangeListener(this);
 
         // ホスト名設定
         EditTextPreference editHostPreferences = (EditTextPreference)
-                getPreferenceScreen().findPreference(getString(R.string.key_settings_dconn_host));
+                getPreferenceScreen().findPreference(getString(fakeR.getId("string", "key_settings_dconn_host")));
         editHostPreferences.setOnPreferenceChangeListener(this);
         editHostPreferences.setSummary(editHostPreferences.getText());
 
         // ポート番号設定
         mEditPortPreferences = (EditTextPreference)
-                getPreferenceScreen().findPreference(getString(R.string.key_settings_dconn_port));
+                getPreferenceScreen().findPreference(getString(fakeR.getId("string", "key_settings_dconn_port")));
         mEditPortPreferences.setOnPreferenceChangeListener(this);
         mEditPortPreferences.setSummary(mEditPortPreferences.getText());
 
         // Local OAuthのON/OFF
         mCheckBoxOauthPreferences = (CheckBoxPreference)
-                getPreferenceScreen().findPreference(getString(R.string.key_settings_dconn_local_oauth));
+                getPreferenceScreen().findPreference(getString(fakeR.getId("string", "key_settings_dconn_local_oauth")));
         mCheckBoxOauthPreferences.setOnPreferenceChangeListener(this);
 
         // グローバル設定のON/OFF
         mCheckBoxExternalPreferences = (CheckBoxPreference)
-                getPreferenceScreen().findPreference(getString(R.string.key_settings_dconn_allow_external_ip));
+                getPreferenceScreen().findPreference(getString(fakeR.getId("string", "key_settings_dconn_allow_external_ip")));
         mCheckBoxExternalPreferences.setOnPreferenceChangeListener(this);
 
         // Origin不要フラグ設定のON/OFF
         mCheckBoxRequireOriginPreferences = (CheckBoxPreference)
-                getPreferenceScreen().findPreference(getString(R.string.key_settings_dconn_require_origin));
+                getPreferenceScreen().findPreference(getString(fakeR.getId("string", "key_settings_dconn_require_origin")));
         mCheckBoxRequireOriginPreferences.setOnPreferenceChangeListener(this);
 
         // Originブロック設定のON/OFF
         mCheckBoxOriginBlockingPreferences = (CheckBoxPreference)
-                getPreferenceScreen().findPreference(getString(R.string.key_settings_dconn_whitelist_origin_blocking));
+                getPreferenceScreen().findPreference(getString(fakeR.getId("string", "key_settings_dconn_whitelist_origin_blocking")));
         mCheckBoxOriginBlockingPreferences.setOnPreferenceChangeListener(this);
 
         editHostPreferences.setEnabled(false);
@@ -174,14 +176,14 @@ public class SettingsFragment extends PreferenceFragment
         // dConnectManagerの起動チェック
         SwitchPreference serverPreferences = (SwitchPreference)
                 getPreferenceScreen()
-                .findPreference(getString(R.string.key_settings_dconn_server_on_off));
+                .findPreference(getString(fakeR.getId("string", "key_settings_dconn_server_on_off")));
         serverPreferences.setOnPreferenceChangeListener(this);
         serverPreferences.setChecked(isDConnectServiceRunning());
         
         // 監視サービスの起動チェック
         CheckBoxPreference observerPreferences = (CheckBoxPreference)
                 getPreferenceScreen()
-                .findPreference(getString(R.string.key_settings_dconn_observer_on_off));
+                .findPreference(getString(fakeR.getId("string", "key_settings_dconn_observer_on_off")));
         observerPreferences.setOnPreferenceChangeListener(this);
         observerPreferences.setChecked(isObservationServices());
 
@@ -202,7 +204,7 @@ public class SettingsFragment extends PreferenceFragment
             final Preference preference, final Object newValue) {
         final String key = preference.getKey();
         if (preference instanceof EditTextPreference) {
-            if (getString(R.string.key_settings_dconn_port).equals(key)) {
+            if (getString(fakeR.getId("string", "key_settings_dconn_port")).equals(key)) {
                 String value = newValue.toString();
                 try {
                     // 入力値が整数かチェックする
@@ -215,7 +217,7 @@ public class SettingsFragment extends PreferenceFragment
                 ((EditTextPreference) preference).setSummary(newValue.toString());
             }
         } else if (preference instanceof SwitchPreference) {
-            if (getString(R.string.key_settings_dconn_server_on_off).equals(key)) {
+            if (getString(fakeR.getId("string", "key_settings_dconn_server_on_off")).equals(key)) {
                 boolean checked = ((Boolean) newValue).booleanValue();
                 mCheckBoxSslPreferences.setEnabled(!checked);
                 mCheckBoxOauthPreferences.setEnabled(!checked);
@@ -232,7 +234,7 @@ public class SettingsFragment extends PreferenceFragment
                 }
             }
         } else if (preference instanceof CheckBoxPreference) {
-            if (getString(R.string.key_settings_dconn_observer_on_off).equals(key)) {
+            if (getString(fakeR.getId("string", "key_settings_dconn_observer_on_off")).equals(key)) {
                 boolean checked = ((Boolean) newValue).booleanValue();
                 // 監視サービスのON/OFF
                 Intent intent = new Intent();
@@ -243,15 +245,15 @@ public class SettingsFragment extends PreferenceFragment
                     intent.setAction(DConnectObservationService.ACTION_STOP);
                 }
                 getActivity().sendBroadcast(intent);
-            } else if (getString(R.string.key_settings_dconn_require_origin).equals(key)) {
+            } else if (getString(fakeR.getId("string", "key_settings_dconn_require_origin")).equals(key)) {
                 boolean checked = ((Boolean) newValue).booleanValue();
                 if (!checked) {
                     List<String> settings = new ArrayList<String>();
                     if (mCheckBoxOauthPreferences.isChecked()) {
-                        settings.add(getString(R.string.activity_settings_local_oauth));
+                        settings.add(getString(fakeR.getId("string", "activity_settings_local_oauth")));
                     }
                     if (mCheckBoxOriginBlockingPreferences.isChecked()) {
-                        settings.add(getString(R.string.activity_settings_whitelist_enable));
+                        settings.add(getString(fakeR.getId("string", "activity_settings_whitelist_enable")));
                     }
                     
                     if (settings.size() > 0) {
@@ -263,13 +265,13 @@ public class SettingsFragment extends PreferenceFragment
                         }
                         
                         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                        builder.setTitle(getString(R.string.activity_settings_warning));
-                        String message = getString(R.string.activity_settings_warning_require_origin_disabled);
+                        builder.setTitle(getString(fakeR.getId("string", "activity_settings_warning")));
+                        String message = getString(fakeR.getId("string", "activity_settings_warning_require_origin_disabled"));
                         message = message.replace("%1", list);
                         builder.setMessage(message);
                         builder.setCancelable(false);
-                        String yes = getString(R.string.activity_settings_yes);
-                        String no = getString(R.string.activity_settings_no);
+                        String yes = getString(fakeR.getId("string", "activity_settings_yes"));
+                        String no = getString(fakeR.getId("string", "activity_settings_no"));
                         builder.setPositiveButton(yes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(final DialogInterface dialog, final int which) {
@@ -286,24 +288,24 @@ public class SettingsFragment extends PreferenceFragment
                         builder.create().show();
                     }
                 }
-            } else if (getString(R.string.key_settings_dconn_local_oauth).equals(key)
-                    || getString(R.string.key_settings_dconn_whitelist_origin_blocking).equals(key)) {
+            } else if (getString(fakeR.getId("string", "key_settings_dconn_local_oauth")).equals(key)
+                    || getString(fakeR.getId("string", "key_settings_dconn_whitelist_origin_blocking")).equals(key)) {
                 boolean checked = ((Boolean) newValue).booleanValue();
                 boolean requiredOrigin = mCheckBoxRequireOriginPreferences.isChecked();
                 if (checked && !requiredOrigin) {
                     StringBuilder list = new StringBuilder();
                     list.append(" - ");
-                    list.append(getString(R.string.activity_settings_require_origin));
+                    list.append(getString(fakeR.getId("string", "activity_settings_require_origin")));
                     list.append("\n");
                     
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setTitle(getString(R.string.activity_settings_warning));
-                    String message = getString(R.string.activity_settings_warning_require_origin_enabled);
+                    builder.setTitle(getString(fakeR.getId("string", "activity_settings_warning")));
+                    String message = getString(fakeR.getId("string", "activity_settings_warning_require_origin_enabled"));
                     message = message.replace("%1", list);
                     builder.setMessage(message);
                     builder.setCancelable(false);
-                    String yes = getString(R.string.activity_settings_yes);
-                    String no = getString(R.string.activity_settings_no);
+                    String yes = getString(fakeR.getId("string", "activity_settings_yes"));
+                    String no = getString(fakeR.getId("string", "activity_settings_no"));
                     builder.setPositiveButton(yes, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(final DialogInterface dialog, final int which) {
@@ -329,27 +331,27 @@ public class SettingsFragment extends PreferenceFragment
         boolean result = super.onPreferenceTreeClick(preferenceScreen, preference);
 
         // 各説明をダイアログで表示
-        if (getString(R.string.key_settings_open_source_licenses).equals(preference.getKey())) {
+        if (getString(fakeR.getId("string", "key_settings_open_source_licenses")).equals(preference.getKey())) {
             Bundle args = new Bundle();
             args.putParcelableArrayList(OpenSourceLicenseFragment.EXTRA_OSS, mOpenSourceList);
             OpenSourceLicenseFragment fragment = new OpenSourceLicenseFragment();
             fragment.setArguments(args);
             fragment.show(getFragmentManager(), null);
-        } else if (getString(R.string.key_settings_about_privacypolicy).equals(preference.getKey())) {
+        } else if (getString(fakeR.getId("string", "key_settings_about_privacypolicy")).equals(preference.getKey())) {
             Bundle policyArgs = new Bundle();
-            policyArgs.putInt(Intent.EXTRA_TITLE, R.string.activity_settings_privacy_policy);
-            policyArgs.putInt(Intent.EXTRA_TEXT, R.raw.privacypolicy);
+            policyArgs.putInt(Intent.EXTRA_TITLE, fakeR.getId("string", "activity_settings_privacy_policy"));
+            policyArgs.putInt(Intent.EXTRA_TEXT, fakeR.getId("raw", "privacypolicy"));
             TextDialogFragment fragment = new TextDialogFragment();
             fragment.setArguments(policyArgs);
             fragment.show(getFragmentManager(), null);
-        } else if (getString(R.string.key_settings_about_tos).equals(preference.getKey())) {
+        } else if (getString(fakeR.getId("string", "key_settings_about_tos")).equals(preference.getKey())) {
             Bundle tosArgs = new Bundle();
-            tosArgs.putInt(Intent.EXTRA_TITLE, R.string.activity_settings_terms_of_service);
-            tosArgs.putInt(Intent.EXTRA_TEXT, R.raw.termsofservice);
+            tosArgs.putInt(Intent.EXTRA_TITLE, fakeR.getId("string", "activity_settings_terms_of_service"));
+            tosArgs.putInt(Intent.EXTRA_TEXT, fakeR.getId("raw", "termsofservice"));
             TextDialogFragment fragment = new TextDialogFragment();
             fragment.setArguments(tosArgs);
             fragment.show(getFragmentManager(), null);
-        } else if (getString(R.string.key_settings_restart_device_plugin).equals(preference.getKey())) {
+        } else if (getString(fakeR.getId("string", "key_settings_restart_device_plugin")).equals(preference.getKey())) {
             restartDevicePlugins();
         }
         showIPAddress();
@@ -445,8 +447,8 @@ public class SettingsFragment extends PreferenceFragment
     public static class StartingDialogFragment extends DialogFragment {
         @Override
         public Dialog onCreateDialog(final Bundle savedInstanceState) {
-            String title = getString(R.string.activity_settings_restart_device_plugin_title);
-            String msg = getString(R.string.activity_settings_restart_device_plugin_message);
+            String title = getString(fakeR.getId("string", "activity_settings_restart_device_plugin_title"));
+            String msg = getString(fakeR.getId("string", "activity_settings_restart_device_plugin_message"));
             ProgressDialog progressDialog = new ProgressDialog(getActivity());
             progressDialog.setTitle(title);
             progressDialog.setMessage(msg);
@@ -467,7 +469,7 @@ public class SettingsFragment extends PreferenceFragment
 
         // Set Host IP Address.
         EditTextPreference editHostPreferences = (EditTextPreference)
-                getPreferenceScreen().findPreference(getString(R.string.key_settings_dconn_host));
+                getPreferenceScreen().findPreference(getString(fakeR.getId("string", "key_settings_dconn_host")));
         editHostPreferences.setSummary(formatedIpAddress);
     }
 }

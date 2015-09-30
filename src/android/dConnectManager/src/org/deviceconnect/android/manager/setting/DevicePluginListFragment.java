@@ -25,10 +25,9 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import org.deviceconnect.android.manager.BuildConfig;
 import org.deviceconnect.android.manager.DevicePlugin;
 import org.deviceconnect.android.manager.DevicePluginManager;
-import org.deviceconnect.android.manager.R;
+import org.deviceconnect.android.manager.plugin.FakeR;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +41,8 @@ public class DevicePluginListFragment extends Fragment {
 
     /** Adapter. */
     private PluginAdapter mPluginAdapter;
+
+    private static FakeR fakeR;
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
@@ -69,18 +70,18 @@ public class DevicePluginListFragment extends Fragment {
             container.setIcon(pm.getApplicationIcon(app.packageName));
         } catch (PackageManager.NameNotFoundException e) {
             // do nothing.
-            if (BuildConfig.DEBUG) {
-                Log.d("Manager", "Icon is not found.");
-            }
+//            if (BuildConfig.DEBUG) {
+//                Log.d("Manager", "Icon is not found.");
+//            }
         }
         try {
             PackageInfo info = pm.getPackageInfo(app.packageName, PackageManager.GET_META_DATA);
             container.setVersion(info.versionName);
         } catch (PackageManager.NameNotFoundException e) {
             // do nothing.
-            if (BuildConfig.DEBUG) {
-                Log.d("Manager", "VersionName is not found.");
-            }
+//            if (BuildConfig.DEBUG) {
+//                Log.d("Manager", "VersionName is not found.");
+//            }
         }
         return container;
     }
@@ -110,8 +111,8 @@ public class DevicePluginListFragment extends Fragment {
             final Bundle savedInstanceState) {
 
         mPluginAdapter = new PluginAdapter(getActivity(), createPluginContainers());
-        View rootView = inflater.inflate(R.layout.fragment_devicepluginlist, container, false);
-        ListView listView = (ListView) rootView.findViewById(R.id.listview_pluginlist);
+        View rootView = inflater.inflate(fakeR.getId("layout", "fragment_devicepluginlist"), container, false);
+        ListView listView = (ListView) rootView.findViewById(fakeR.getId("id", "listview_pluginlist"));
         listView.setAdapter(mPluginAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -274,7 +275,7 @@ public class DevicePluginListFragment extends Fragment {
         public View getView(final int position, final View convertView, final ViewGroup parent) {
             View cv;
             if (convertView == null) {
-                cv = mInflater.inflate(R.layout.item_deviceplugin_list, parent, false);
+                cv = mInflater.inflate(fakeR.getId("layout", "item_deviceplugin_list"), parent, false);
             } else {
                 cv = convertView;
             }
@@ -283,18 +284,18 @@ public class DevicePluginListFragment extends Fragment {
 
             String name = plugin.getLabel();
 
-            TextView nameView = (TextView) cv.findViewById(R.id.devicelist_package_name);
+            TextView nameView = (TextView) cv.findViewById(fakeR.getId("id", "devicelist_package_name"));
             nameView.setText(name);
 
             Drawable icon = plugin.getIcon();
             if (icon != null) {
-                ImageView iconView = (ImageView) cv.findViewById(R.id.devicelist_icon);
+                ImageView iconView = (ImageView) cv.findViewById(fakeR.getId("id", "devicelist_icon"));
                 iconView.setImageDrawable(icon);
             }
 
             String version = plugin.getVersion();
-            TextView versionView = (TextView) cv.findViewById(R.id.devicelist_version);
-            versionView.setText(getString(R.string.activity_devicepluginlist_version) + version);
+            TextView versionView = (TextView) cv.findViewById(fakeR.getId("id", "devicelist_version"));
+            versionView.setText(getString(fakeR.getId("string", "activity_devicepluginlist_version")) + version);
             return cv;
         }
     }

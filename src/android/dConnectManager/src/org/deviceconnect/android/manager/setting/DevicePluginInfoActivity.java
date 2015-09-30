@@ -13,7 +13,7 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 
-import org.deviceconnect.android.manager.R;
+import org.deviceconnect.android.manager.plugin.FakeR;
 
 /**
  * Device Connect Manager device plug-in Information Activity.
@@ -25,10 +25,12 @@ public class DevicePluginInfoActivity extends Activity {
     /** デバイスプラグインのパッケージ名のキー. */
     static final String PACKAGE_NAME = "packageName";
 
+    private static FakeR fakeR;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle(R.string.activity_deviceplugin_info_title);
+        setTitle(fakeR.getId("string", "activity_deviceplugin_info_title"));
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();

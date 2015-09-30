@@ -7,7 +7,7 @@
 package org.deviceconnect.android.manager.setting;
 
 import org.deviceconnect.android.manager.DConnectService;
-import org.deviceconnect.android.manager.R;
+import org.deviceconnect.android.manager.plugin.FakeR;
 import org.deviceconnect.message.intent.message.IntentDConnectMessage;
 
 import android.app.AlertDialog;
@@ -25,13 +25,16 @@ import android.support.v4.app.DialogFragment;
  * @author NTT DOCOMO, INC.
  */
 public class KeywordDialogFragment extends DialogFragment {
+
+    private static FakeR fakeR;
+
     @Override
     public Dialog onCreateDialog(final Bundle savedInstanceState) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        String keyword = sp.getString(getString(R.string.key_settings_dconn_keyword), null);
+        String keyword = sp.getString(getString(fakeR.getId("string", "key_settings_dconn_keyword")), null);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        final Dialog dialog = builder.setTitle(R.string.activity_keyword).setMessage(keyword)
-                .setPositiveButton(R.string.activity_keyword_ok, new DialogInterface.OnClickListener() {
+        final Dialog dialog = builder.setTitle(fakeR.getId("string", "activity_keyword")).setMessage(keyword)
+                .setPositiveButton(fakeR.getId("string", "activity_keyword_ok"), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(final DialogInterface dialog, final int which) {
                         dialog.dismiss();

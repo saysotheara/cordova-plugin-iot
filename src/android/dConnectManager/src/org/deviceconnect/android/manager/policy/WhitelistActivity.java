@@ -6,7 +6,7 @@
  */
 package org.deviceconnect.android.manager.policy;
 
-import org.deviceconnect.android.manager.R;
+import org.deviceconnect.android.manager.plugin.FakeR;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -21,10 +21,12 @@ import android.os.Bundle;
  */
 public class WhitelistActivity extends Activity {
 
+    private static FakeR fakeR;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle(R.string.activity_whitelist_title);
+        setTitle(fakeR.getId("string", "activity_whitelist_title"));
         getActionBar().setDisplayHomeAsUpEnabled(true);
         
         if (savedInstanceState == null) {

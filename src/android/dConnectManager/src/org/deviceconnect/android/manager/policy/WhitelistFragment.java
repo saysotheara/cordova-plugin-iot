@@ -13,8 +13,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.deviceconnect.android.manager.R;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
@@ -47,6 +45,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.deviceconnect.android.manager.plugin.FakeR;
+
 /**
  * Whitelist fragment.
  * 
@@ -66,6 +66,8 @@ public class WhitelistFragment extends Fragment {
     /** The instance of {@link OriginListAdapter}. */
     private OriginListAdapter mListAdapter;
 
+    private static FakeR fakeR;
+
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,8 +80,8 @@ public class WhitelistFragment extends Fragment {
             final Bundle savedInstanceState) {
         mListAdapter = new OriginListAdapter(getActivity(), mWhitelist.getOrigins());
 
-        mRootView = inflater.inflate(R.layout.fragment_whitelist, container, false);
-        ListView listView = (ListView) mRootView.findViewById(R.id.listview_whitelist);
+        mRootView = inflater.inflate(fakeR.getId("layout", "fragment_whitelist"), container, false);
+        ListView listView = (ListView) mRootView.findViewById(fakeR.getId("id", "listview_whitelist"));
         listView.setAdapter(mListAdapter);
         refreshView();
         return mRootView;
@@ -89,7 +91,7 @@ public class WhitelistFragment extends Fragment {
      * Refreshes views.
      */
     private void refreshView() {
-        View commentView = mRootView.findViewById(R.id.view_no_origin);
+        View commentView = mRootView.findViewById(fakeR.getId("id", "view_no_origin"));
         if (mWhitelist.getOrigins().size() == 0) {
             commentView.setVisibility(View.VISIBLE);
         } else {
@@ -109,7 +111,7 @@ public class WhitelistFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
         menu.clear();
-        final MenuItem menuItem = menu.add(R.string.menu_add_origin);
+        final MenuItem menuItem = menu.add(fakeR.getId("string", "menu_add_origin"));
         menuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
         menuItem.setOnMenuItemClickListener(new OnMenuItemClickListener() {
             @Override
@@ -162,15 +164,15 @@ public class WhitelistFragment extends Fragment {
 
             View view = convertView;
             if (view == null) {
-                view = mInflater.inflate(R.layout.item_whitelist_origin, (ViewGroup) null);
+                view = mInflater.inflate(fakeR.getId("layout", "item_whitelist_origin"), (ViewGroup) null);
             }
 
-            final TextView textViewTitle = (TextView) view.findViewById(R.id.text_origin_title);
+            final TextView textViewTitle = (TextView) view.findViewById(fakeR.getId("id", "text_origin_title"));
             textViewTitle.setText(info.getTitle());
-            final TextView textViewOrigin = (TextView) view.findViewById(R.id.text_origin);
+            final TextView textViewOrigin = (TextView) view.findViewById(fakeR.getId("id", "text_origin"));
             textViewOrigin.setText(info.getOrigin().toString());
 
-            Button buttonDelete = (Button) view.findViewById(R.id.button_delete_origin);
+            Button buttonDelete = (Button) view.findViewById(fakeR.getId("id", "button_delete_origin"));
             buttonDelete.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(final View v) {
@@ -186,11 +188,11 @@ public class WhitelistFragment extends Fragment {
                         return false;
                     }
                     ManualEntryDialogBuilder builder = new ManualEntryDialogBuilder(context);
-                    builder.mDialogTitle = getString(R.string.dialog_update_origin_title);
+                    builder.mDialogTitle = getString(fakeR.getId("string", "dialog_update_origin_title"));
                     builder.mDefaultOrigin = info.getOrigin().toString();
                     builder.mDefaultOriginTitle = info.getTitle();
-                    builder.mPositiveButtonName = getString(R.string.dialog_update_origin_positive);
-                    builder.mNegativeButtonName = getString(R.string.dialog_update_origin_negative);
+                    builder.mPositiveButtonName = getString(fakeR.getId("string", "dialog_update_origin_positive"));
+                    builder.mNegativeButtonName = getString(fakeR.getId("string", "dialog_update_origin_negative"));
                     builder.mListener = new OnEntryListener() {
                         @Override
                         public void onEntry(final String newOriginExp, final String newTitle) {
@@ -274,9 +276,9 @@ public class WhitelistFragment extends Fragment {
      * @param origin an origin to be deleted.
      */
     private void openDeleteDialog(final OriginInfo origin) {
-        String strGuidance = getString(R.string.dialog_delete_origin_message);
-        String strPositive = getString(R.string.dialog_delete_origin_positive);
-        String strNegative = getString(R.string.dialog_delete_origin_negative);
+        String strGuidance = getString(fakeR.getId("string", "dialog_delete_origin_message"));
+        String strPositive = getString(fakeR.getId("string", "dialog_delete_origin_positive"));
+        String strNegative = getString(fakeR.getId("string", "dialog_delete_origin_negative"));
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(origin.getTitle());
@@ -304,8 +306,8 @@ public class WhitelistFragment extends Fragment {
     private void openAddDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(true);
-        builder.setTitle(R.string.dialog_add_origin_title);
-        builder.setItems(R.array.whitelist_menu_origin, new DialogInterface.OnClickListener() {
+        builder.setTitle(fakeR.getId("string", "dialog_add_origin_title"));
+        builder.setItems(fakeR.getId("array", "whitelist_menu_origin"), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(final DialogInterface dialog, final int which) {
                 dialog.dismiss();
@@ -322,11 +324,11 @@ public class WhitelistFragment extends Fragment {
                     break;
                 case 2:
                     ManualEntryDialogBuilder builder = new ManualEntryDialogBuilder(context);
-                    builder.mDialogTitle = getString(R.string.dialog_add_origin_title);
+                    builder.mDialogTitle = getString(fakeR.getId("string", "dialog_add_origin_title"));
                     builder.mDefaultOrigin = "";
                     builder.mDefaultOriginTitle = "";
-                    builder.mPositiveButtonName = getString(R.string.dialog_add_origin_positive);
-                    builder.mNegativeButtonName = getString(R.string.dialog_add_origin_negative);
+                    builder.mPositiveButtonName = getString(fakeR.getId("string", "dialog_add_origin_positive"));
+                    builder.mNegativeButtonName = getString(fakeR.getId("string", "dialog_add_origin_negative"));
                     builder.mListener = new OnEntryListener() {
                         @Override
                         public void onEntry(final String origin, final String title) {
@@ -358,7 +360,7 @@ public class WhitelistFragment extends Fragment {
     private void openListDialog(final Context context, final List<KnownApplicationInfo> list) {
         ApplicationListAdapter adapter = new ApplicationListAdapter(getActivity(), list);
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(R.string.dialog_add_origin_title);
+        builder.setTitle(fakeR.getId("string", "dialog_add_origin_title"));
         builder.setSingleChoiceItems(adapter, 0, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(final DialogInterface dialog, final int which) {
@@ -384,7 +386,7 @@ public class WhitelistFragment extends Fragment {
      */
     private List<KnownApplicationInfo> getAllBookmarksOfChrome() {
         ContentResolver resolver = getActivity().getContentResolver();
-        Uri uri = Uri.parse(getString(R.string.chrome_bookmark_provider_url));
+        Uri uri = Uri.parse(getString(fakeR.getId("string", "chrome_bookmark_provider_url")));
         Cursor c = resolver.query(uri, new String[] {
                 Browser.BookmarkColumns.TITLE,
                 Browser.BookmarkColumns.URL,
@@ -570,18 +572,18 @@ public class WhitelistFragment extends Fragment {
 
             View view = convertView;
             if (view == null) {
-                view = mInflater.inflate(R.layout.item_known_applications, (ViewGroup) null);
+                view = mInflater.inflate(fakeR.getId("layout", "item_known_applications"), (ViewGroup) null);
             }
 
-            ImageView imageIcon = (ImageView) view.findViewById(R.id.image_app_icon);
+            ImageView imageIcon = (ImageView) view.findViewById(fakeR.getId("string", "image_app_icon"));
             Drawable icon = info.getIcon();
             if (icon == null) {
                 icon = new BitmapDrawable(BitmapFactory.decodeByteArray(new byte[]{}, 0, 0));
             }
             imageIcon.setImageDrawable(icon);
-            TextView textTitle = (TextView) view.findViewById(R.id.text_app_title);
+            TextView textTitle = (TextView) view.findViewById(fakeR.getId("id", "text_app_title"));
             textTitle.setText(info.getName());
-            TextView textOrigin = (TextView) view.findViewById(R.id.text_app_orgin);
+            TextView textOrigin = (TextView) view.findViewById(fakeR.getId("id", "text_app_orgin"));
             textOrigin.setText(info.getOrigin());
 
             return view;
@@ -631,10 +633,10 @@ public class WhitelistFragment extends Fragment {
          * @return an instance of {@link AlertDialog}
          */
         AlertDialog create() {
-            final int layoutId = R.layout.dialog_origin_manual_entry;
+            final int layoutId = fakeR.getId("layout", "dialog_origin_manual_entry");
             final View root = LayoutInflater.from(mContext).inflate(layoutId, null);
-            final EditText editOrigin = (EditText) root.findViewById(R.id.dialog_origin_manual_entry_edit_origin);
-            final EditText editTitle = (EditText) root.findViewById(R.id.dialog_origin_manual_entry_edit_title);
+            final EditText editOrigin = (EditText) root.findViewById(fakeR.getId("id", "dialog_origin_manual_entry_edit_origin"));
+            final EditText editTitle = (EditText) root.findViewById(fakeR.getId("id", "dialog_origin_manual_entry_edit_title"));
             editOrigin.setText(mDefaultOrigin);
             editTitle.setText(mDefaultOriginTitle);
             mBuilder.setTitle(mDialogTitle);

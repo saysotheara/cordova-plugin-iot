@@ -12,7 +12,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 
-import org.deviceconnect.android.manager.R;
+import org.deviceconnect.android.manager.plugin.FakeR;
 
 /**
  * Device Connect Manager device plug-in list Activity.
@@ -21,10 +21,12 @@ import org.deviceconnect.android.manager.R;
  */
 public class DevicePluginListActivity extends Activity {
 
+    private static FakeR fakeR;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle(R.string.activity_devicepluginlist_title);
+        setTitle(fakeR.getId("string", "activity_devicepluginlist_title"));
         getActionBar().setDisplayHomeAsUpEnabled(true);
         
         if (savedInstanceState == null) {

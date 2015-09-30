@@ -24,6 +24,7 @@ import org.deviceconnect.android.logger.AndroidHandler;
 import org.deviceconnect.android.manager.DConnectLocalOAuth.OAuthData;
 import org.deviceconnect.android.manager.DevicePluginManager.DevicePluginEventListener;
 import org.deviceconnect.android.manager.hmac.HmacManager;
+import org.deviceconnect.android.manager.plugin.FakeR;
 import org.deviceconnect.android.manager.policy.OriginParser;
 import org.deviceconnect.android.manager.policy.Whitelist;
 import org.deviceconnect.android.manager.profile.AuthorizationProfile;
@@ -113,6 +114,8 @@ public abstract class DConnectMessageService extends Service
     /** ホワイトリスト管理クラス. */
     private Whitelist mWhitelist;
 
+    private static FakeR fakeR;
+
     @Override
     public IBinder onBind(final Intent intent) {
         return null;
@@ -122,15 +125,15 @@ public abstract class DConnectMessageService extends Service
     public void onCreate() {
         super.onCreate();
 
-        if (BuildConfig.DEBUG) {
-            AndroidHandler handler = new AndroidHandler("dconnect.manager");
-            handler.setFormatter(new SimpleFormatter());
-            handler.setLevel(Level.ALL);
-            mLogger.addHandler(handler);
-            mLogger.setLevel(Level.ALL);
-        } else {
-            mLogger.setLevel(Level.OFF);
-        }
+//        if (BuildConfig.DEBUG) {
+//            AndroidHandler handler = new AndroidHandler("dconnect.manager");
+//            handler.setFormatter(new SimpleFormatter());
+//            handler.setLevel(Level.ALL);
+//            mLogger.addHandler(handler);
+//            mLogger.setLevel(Level.ALL);
+//        } else {
+//            mLogger.setLevel(Level.OFF);
+//        }
         mLogger.entering(this.getClass().getName(), "onCreate");
 
         // イベント管理クラスの初期化
@@ -437,7 +440,7 @@ public abstract class DConnectMessageService extends Service
      */
     private void executeRequest(final Intent request, final Intent response) {
         // リクエストにDeviceConnectManagerの情報を付加する
-        request.putExtra(DConnectMessage.EXTRA_PRODUCT, getString(R.string.app_name));
+        request.putExtra(DConnectMessage.EXTRA_PRODUCT, getString(fakeR.getId("string", "app_name")));
         request.putExtra(DConnectMessage.EXTRA_VERSION, DConnectUtil.getVersionName(this));
 
         boolean send = false;
@@ -636,7 +639,7 @@ public abstract class DConnectMessageService extends Service
 
         Intent intent = new Intent(response);
         intent.putExtra(IntentDConnectMessage.EXTRA_REQUEST_CODE, requestCode);
-        intent.putExtra(IntentDConnectMessage.EXTRA_PRODUCT, getString(R.string.app_name));
+        intent.putExtra(IntentDConnectMessage.EXTRA_PRODUCT, getString(fakeR.getId("string", "app_name")));
         intent.putExtra(IntentDConnectMessage.EXTRA_VERSION, DConnectUtil.getVersionName(this));
 
         // HMAC生成

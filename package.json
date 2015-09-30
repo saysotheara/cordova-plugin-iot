@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/DeviceConnect/DeviceConnect-Android.git"
+    "url": "https://github.com/saysotheara/cordova-plugin-iot.git"
   },
   "keywords": [
     "ecosystem:moanca",

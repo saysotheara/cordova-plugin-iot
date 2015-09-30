@@ -9,6 +9,8 @@ package org.deviceconnect.android.manager;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import org.deviceconnect.android.manager.plugin.FakeR;
+
 /**
  * DConnectの設定を保持するクラス.
  * @author NTT DOCOMO, INC.
@@ -45,6 +47,8 @@ public final class DConnectSettings {
     /** このクラスの唯一のインスタンス. */
     private static DConnectSettings sInstance;
 
+    private static FakeR fakeR;
+
     /**
      * コンストラクタ.
      * シングルトンにするのでprivateで定義.
@@ -70,23 +74,23 @@ public final class DConnectSettings {
     public void load(final Context context) {
         SharedPreferences sp = context.getSharedPreferences(context.getPackageName() + "_preferences",
                 Context.MODE_MULTI_PROCESS);
-        setHost(sp.getString(context.getString(R.string.key_settings_dconn_host), DConnectSettings.DEFAULT_HOST));
-        setSSL(sp.getBoolean(context.getString(R.string.key_settings_dconn_ssl), false));
-        setUseALocalOAuth(sp.getBoolean(context.getString(R.string.key_settings_dconn_local_oauth), true));
-        setAllowExternalIP(sp.getBoolean(context.getString(R.string.key_settings_dconn_allow_external_ip), false));
+        setHost(sp.getString(context.getString(fakeR.getId("string", "key_settings_dconn_host")), DConnectSettings.DEFAULT_HOST));
+        setSSL(sp.getBoolean(context.getString(fakeR.getId("string", "key_settings_dconn_ssl")), false));
+        setUseALocalOAuth(sp.getBoolean(context.getString(fakeR.getId("string", "key_settings_dconn_local_oauth")), true));
+        setAllowExternalIP(sp.getBoolean(context.getString(fakeR.getId("string", "key_settings_dconn_allow_external_ip")), false));
         setRequireOrigin(
-                sp.getBoolean(context.getString(R.string.key_settings_dconn_require_origin), true));
+                sp.getBoolean(context.getString(fakeR.getId("string", "key_settings_dconn_require_origin")), true));
         setBlockingOrigin(
-                sp.getBoolean(context.getString(R.string.key_settings_dconn_whitelist_origin_blocking), false));
+                sp.getBoolean(context.getString(fakeR.getId("string", "key_settings_dconn_whitelist_origin_blocking")), false));
         try {
             setObservationInterval(Integer.parseInt(sp.getString(
-                    context.getString(R.string.key_settings_dconn_observation_interval),
+                    context.getString(fakeR.getId("string", "key_settings_dconn_observation_interval")),
                     String.valueOf(DEFAULT_INTERVAL))));
         } catch (NumberFormatException e) {
             setObservationInterval(DConnectSettings.DEFAULT_INTERVAL);
         }
         try {
-            setPort(Integer.parseInt(sp.getString(context.getString(R.string.key_settings_dconn_port), "4035")));
+            setPort(Integer.parseInt(sp.getString(context.getString(fakeR.getId("string", "key_settings_dconn_port")), "4035")));
         } catch (NumberFormatException e) {
             setPort(DConnectSettings.DEFAULT_PORT);
         }

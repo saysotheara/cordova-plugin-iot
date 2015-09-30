@@ -1308,6 +1308,7 @@
         <hook type="after_compile" src="src/android/libs/before_compile.js" />
 
         <source-file src="src/android/org/deviceconnect/android/manager/plugin/DeviceConnect.java" target-dir="src/org/deviceconnect/android/manager/plugin" />
+        <source-file src="src/android/org/deviceconnect/android/manager/plugin/FakeR.java" target-dir="src/org/deviceconnect/android/manager/plugin" />
 
         <source-file src="src/android/dConnectManager/src/org/deviceconnect/android/manager/DConnectBroadcastReceiver.java" target-dir="src/org/deviceconnect/android/manager" />
         <source-file src="src/android/dConnectManager/src/org/deviceconnect/android/manager/DConnectLaunchActivity.java" target-dir="src/org/deviceconnect/android/manager" />

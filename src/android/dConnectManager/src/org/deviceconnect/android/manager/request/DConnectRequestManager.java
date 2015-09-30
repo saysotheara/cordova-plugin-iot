@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import org.deviceconnect.android.manager.BuildConfig;
 import org.deviceconnect.message.intent.message.IntentDConnectMessage;
 
 import android.content.Intent;
@@ -60,9 +59,9 @@ public class DConnectRequestManager {
                     request.run();
                 } catch (Throwable e) {
                     request.sendRuntimeException(e.getMessage());
-                    if (BuildConfig.DEBUG) {
-                        Log.e("dConnectManager", "runtime", e);
-                    }
+//                    if (BuildConfig.DEBUG) {
+//                        Log.e("dConnectManager", "runtime", e);
+//                    }
                 } finally {
                     mRequestList.remove(request);
                 }
@@ -101,9 +100,9 @@ public class DConnectRequestManager {
                 } catch (Throwable e) {
                     e.printStackTrace();
                     request.sendRuntimeException(e.getMessage());
-                    if (BuildConfig.DEBUG) {
-                        Log.e("dConnectManager", "runtime", e);
-                    }
+//                    if (BuildConfig.DEBUG) {
+//                        Log.e("dConnectManager", "runtime", e);
+//                    }
                 } finally {
                     mRequestList.remove(request);
                 }

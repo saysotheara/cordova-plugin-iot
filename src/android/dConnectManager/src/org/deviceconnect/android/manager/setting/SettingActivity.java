@@ -7,7 +7,7 @@
 package org.deviceconnect.android.manager.setting;
 
 import org.deviceconnect.android.localoauth.LocalOAuth2Main;
-import org.deviceconnect.android.manager.R;
+import org.deviceconnect.android.manager.plugin.FakeR;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -18,6 +18,7 @@ import android.os.Bundle;
  */
 public class SettingActivity extends Activity {
 
+    private static FakeR fakeR;
     /**
      * {@inheritDoc}
      */
@@ -25,7 +26,7 @@ public class SettingActivity extends Activity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActionBar().setDisplayHomeAsUpEnabled(false);
-        setContentView(R.layout.activity_dconnect_settings);
+        setContentView(fakeR.getId("layout", "activity_dconnect_settings"));
         LocalOAuth2Main.initialize(this);
     }
 

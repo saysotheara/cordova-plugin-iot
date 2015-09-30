@@ -31,7 +31,7 @@ import org.deviceconnect.android.localoauth.DevicePluginXmlProfileLocale;
 import org.deviceconnect.android.localoauth.DevicePluginXmlUtil;
 import org.deviceconnect.android.manager.DevicePlugin;
 import org.deviceconnect.android.manager.DevicePluginManager;
-import org.deviceconnect.android.manager.R;
+import org.deviceconnect.android.manager.plugin.FakeR;
 import org.deviceconnect.android.profile.SystemProfile;
 import org.deviceconnect.message.intent.message.IntentDConnectMessage;
 
@@ -52,6 +52,8 @@ public class DevicePluginInfoFragment extends Fragment {
     /** デバイスプラグインのパッケージ名. */
     private String mPackageName;
 
+    private static FakeR fakeR;
+
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +63,7 @@ public class DevicePluginInfoFragment extends Fragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              final Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_deviceplugin_info, container, false);
+        View view = inflater.inflate(fakeR.getId("layout", "fragment_deviceplugin_info"), container, false);
 
         mPackageName = getArguments().getString(DevicePluginInfoActivity.PACKAGE_NAME);
 
@@ -79,31 +81,31 @@ public class DevicePluginInfoFragment extends Fragment {
             e.printStackTrace();
         }
 
-        TextView nameView = (TextView) view.findViewById(R.id.plugin_package_name);
+        TextView nameView = (TextView) view.findViewById(fakeR.getId("id", "plugin_package_name"));
         nameView.setText(name);
         if (icon != null) {
-            ImageView iconView = (ImageView) view.findViewById(R.id.plugin_icon);
+            ImageView iconView = (ImageView) view.findViewById(fakeR.getId("id", "plugin_icon"));
             iconView.setImageDrawable(icon);
         }
 
-        TextView versionView = (TextView) view.findViewById(R.id.plugin_version);
-        versionView.setText(getString(R.string.activity_deviceplugin_info_version) + versionName);
+        TextView versionView = (TextView) view.findViewById(fakeR.getId("id", "plugin_version"));
+        versionView.setText(getString(fakeR.getId("string", "activity_deviceplugin_info_version")) + versionName);
 
-        Button settingBtn = (Button) view.findViewById(R.id.plugin_settings_btn);
+        Button settingBtn = (Button) view.findViewById(fakeR.getId("id", "plugin_settings_btn"));
         settingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 openSettings();
             }
         });
-        Button deleteBtn = (Button) view.findViewById(R.id.plugin_delete_btn);
+        Button deleteBtn = (Button) view.findViewById(fakeR.getId("id", "plugin_delete_btn"));
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 openUninstall();
             }
         });
-        Button restartBtn = (Button) view.findViewById(R.id.plugin_restart_btn);
+        Button restartBtn = (Button) view.findViewById(fakeR.getId("id", "plugin_restart_btn"));
         restartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
@@ -111,7 +113,7 @@ public class DevicePluginInfoFragment extends Fragment {
             }
         });
 
-        LinearLayout mainLayout = (LinearLayout) view.findViewById(R.id.plugin_support_profiles);
+        LinearLayout mainLayout = (LinearLayout) view.findViewById(fakeR.getId("id", "plugin_support_profiles"));
 
         Map<String, DevicePluginXmlProfile> profiles = getSupportedProfiles();
         if (profiles != null) {
@@ -259,8 +261,8 @@ public class DevicePluginInfoFragment extends Fragment {
     public static class StartingDialogFragment extends DialogFragment {
         @Override
         public Dialog onCreateDialog(final Bundle savedInstanceState) {
-            String title = getString(R.string.activity_settings_restart_device_plugin_title);
-            String msg = getString(R.string.activity_settings_restart_device_plugin_message);
+            String title = getString(fakeR.getId("string", "activity_settings_restart_device_plugin_title"));
+            String msg = getString(fakeR.getId("string", "activity_settings_restart_device_plugin_message"));
             ProgressDialog progressDialog = new ProgressDialog(getActivity());
             progressDialog.setTitle(title);
             progressDialog.setMessage(msg);

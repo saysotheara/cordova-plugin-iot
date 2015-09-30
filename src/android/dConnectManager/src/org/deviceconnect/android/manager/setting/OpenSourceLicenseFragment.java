@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import org.apache.http.protocol.HTTP;
-import org.deviceconnect.android.manager.R;
+import org.deviceconnect.android.manager.plugin.FakeR;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -40,6 +40,8 @@ public class OpenSourceLicenseFragment extends DialogFragment {
      */
     private Logger mLogger = Logger.getLogger("dconnect.uiapp");
 
+    private static FakeR fakeR;
+
     @Override
     public Dialog onCreateDialog(final Bundle savedInstanceState) {
         FrameLayout lframe = new FrameLayout(getActivity());
@@ -52,7 +54,7 @@ public class OpenSourceLicenseFragment extends DialogFragment {
         lframe.setBackgroundColor(getResources().getColor(android.R.color.background_light));
 
         ArrayAdapter<Parcelable> adapter =
-                new SoftwareArrayAdapter(getActivity(), R.layout.item_open_source_licenses);
+                new SoftwareArrayAdapter(getActivity(), fakeR.getId("layout", "item_open_source_licenses"));
         if (getArguments() != null && getArguments().containsKey(EXTRA_OSS)) {
             adapter.addAll(getArguments().getParcelableArrayList(EXTRA_OSS));
         }
@@ -61,9 +63,9 @@ public class OpenSourceLicenseFragment extends DialogFragment {
         listView.setAdapter(adapter);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(R.string.activity_settings_open_source_licenses);
+        builder.setTitle(fakeR.getId("string", "activity_settings_open_source_licenses"));
         builder.setView(lframe);
-        builder.setPositiveButton(R.string.activity_settings_close, new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(fakeR.getId("string", "activity_settings_close"), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(final DialogInterface dialog, final int which) {
                 dialog.dismiss();

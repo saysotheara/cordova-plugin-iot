@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import org.deviceconnect.android.manager.hmac.HmacManager;
+import org.deviceconnect.android.manager.plugin.FakeR;
 import org.deviceconnect.android.manager.setting.SettingActivity;
 import org.deviceconnect.message.intent.message.IntentDConnectMessage;
 
@@ -51,15 +52,17 @@ public class DConnectLaunchActivity extends Activity {
     /** The text view to show a prompt message. */
     private TextView mMessageView;
 
+    private static FakeR fakeR;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dconnect_launcher);
+        setContentView(fakeR.getId("layout", "activity_dconnect_launcher"));
         mHmacManager = new HmacManager(this);
 
-        mMessageView = (TextView) findViewById(R.id.text_manager_launcher_message);
-        mLaunchOrStopButton = (Button) findViewById(R.id.button_manager_launcher_launch_or_stop);
-        Button cancelButton = (Button) findViewById(R.id.button_manager_launcher_cancel);
+        mMessageView = (TextView) findViewById(fakeR.getId("id", "text_manager_launcher_message"));
+        mLaunchOrStopButton = (Button) findViewById(fakeR.getId("id", "button_manager_launcher_launch_or_stop"));
+        Button cancelButton = (Button) findViewById(fakeR.getId("id", "button_manager_launcher_cancel"));
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
@@ -130,8 +133,8 @@ public class DConnectLaunchActivity extends Activity {
      */
     private void toggleButton(final boolean isLaunched) {
         if (isLaunched) {
-            mMessageView.setText(R.string.activity_launch_message_stop);
-            mLaunchOrStopButton.setText(R.string.activity_launch_button_stop);
+            mMessageView.setText(fakeR.getId("string", "activity_launch_message_stop"));
+            mLaunchOrStopButton.setText(fakeR.getId("string", "activity_launch_button_stop"));
             mLaunchOrStopButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View v) {
@@ -140,8 +143,8 @@ public class DConnectLaunchActivity extends Activity {
                 }
             });
         } else {
-            mMessageView.setText(R.string.activity_launch_message_launch);
-            mLaunchOrStopButton.setText(R.string.activity_launch_button_launch);
+            mMessageView.setText(fakeR.getId("string", "activity_launch_message_launch"));
+            mLaunchOrStopButton.setText(fakeR.getId("string", "activity_launch_button_launch"));
             mLaunchOrStopButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View v) {
@@ -154,14 +157,14 @@ public class DConnectLaunchActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_dconnect_launcher, menu);
+        getMenuInflater().inflate(fakeR.getId("menu", "activity_dconnect_launcher"), menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.dconnect_launcher_menu_item_settings) {
+        if (id == fakeR.getId("id", "dconnect_launcher_menu_item_settings")) {
             Intent intent = new Intent(this, SettingActivity.class);
             startActivity(intent);
         } else if (id == android.R.id.home) {

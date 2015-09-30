@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.UUID;
 import java.util.logging.Logger;
 
-import org.deviceconnect.android.manager.BuildConfig;
 import org.deviceconnect.android.manager.DevicePlugin;
 import org.deviceconnect.android.profile.ServiceDiscoveryProfile;
 import org.deviceconnect.message.DConnectMessage;
@@ -80,15 +79,15 @@ public class ServiceDiscoveryRequest extends DConnectRequest {
                             mPluginMgr.appendServiceId(plugin, id));
                     mServices.add(b);
 
-                    if (BuildConfig.DEBUG) {
-                        Object scopes = b.getStringArray(ServiceDiscoveryProfileConstants.PARAM_SCOPES);
-                        if (scopes != null && scopes instanceof String[]) {
-                            mLogger.info("Scopes of device: serviceId=" + id + ", scopes="
-                                    + toString((String[]) scopes));
-                        } else {
-                            mLogger.warning("Scopes param is illegal type: " + scopes);
-                        }
-                    }
+//                    if (BuildConfig.DEBUG) {
+//                        Object scopes = b.getStringArray(ServiceDiscoveryProfileConstants.PARAM_SCOPES);
+//                        if (scopes != null && scopes instanceof String[]) {
+//                            mLogger.info("Scopes of device: serviceId=" + id + ", scopes="
+//                                    + toString((String[]) scopes));
+//                        } else {
+//                            mLogger.warning("Scopes param is illegal type: " + scopes);
+//                        }
+//                    }
                 }
                 mRequestCodeArray.remove(requestCode);
             }

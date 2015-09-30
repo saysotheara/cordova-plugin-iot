@@ -40,10 +40,10 @@ public class DConnectBroadcastReceiver extends BroadcastReceiver {
         if (!isManagerRunning(context)) {
             String action = intent.getAction();
             if (action != null && IntentDConnectMessage.ACTION_EVENT.equals(action)) {
-                if (BuildConfig.DEBUG) {
-                    String serviceId = DConnectProfile.getServiceID(intent);
-                    mLogger.info("Ignored an event message from device plug-in: serviceId=" + serviceId);
-                }
+//                if (BuildConfig.DEBUG) {
+//                    String serviceId = DConnectProfile.getServiceID(intent);
+//                    mLogger.info("Ignored an event message from device plug-in: serviceId=" + serviceId);
+//                }
                 return;
             }
         }
