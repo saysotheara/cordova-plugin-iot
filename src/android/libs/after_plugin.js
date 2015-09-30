@@ -18,9 +18,14 @@ module.exports = function(context) {
          	if (line.toString().indexOf('// SUB-PROJECT DEPENDENCIES END') > -1) {
 				var data = fs.readFileSync(buildFile).toString().split("\n");
 				data.splice(line_number + 0, 0, "    compile project(':dconnect-device-plugin-sdk')");
-				data.splice(line_number + 1, 0, "    compile project(':dconnect-server-nano-httpd')");
+				data.splice(line_number + 1, 0, "    compile project(':dconnect-sdk-for-android')");
+				data.splice(line_number + 2, 0, "    compile project(':dconnect-server')");
+				data.splice(line_number + 3, 0, "    compile project(':dconnect-server-nano-httpd')");
+				data.splice(line_number + 4, 0, "    compile project(':dconnect-manager')");
 
 				data.splice(line_number - 8, 0, "    }");
+				data.splice(line_number - 8, 0, "        exclude 'META-INF/LICENSE'");
+				data.splice(line_number - 8, 0, "        exclude 'META-INF/DEPENDENCIES'");
 				data.splice(line_number - 8, 0, "        exclude 'META-INF/notice.txt'");
 				data.splice(line_number - 8, 0, "        exclude 'META-INF/NOTICE.txt'");
 				data.splice(line_number - 8, 0, "        exclude 'META-INF/NOTICE'");
@@ -33,3 +38,4 @@ module.exports = function(context) {
      	}
  	);
 }
+
