@@ -1,12 +1,9 @@
 /**
  * PhoneGap is available under *either* the terms of the modified BSD license *or* the
  * MIT License (2008). See http://opensource.org/licenses/alphabetical for full text.
- *
- * Copyright (c) Matt Kane 2010
- * Copyright (c) 2011, IBM Corporation
- * Copyright (c) 2013, Maciej Nux Jaros
  */
-package io.monaca.plugin;
+
+package monaca.plugin;
 
 import android.content.Context;
 import android.content.Intent;

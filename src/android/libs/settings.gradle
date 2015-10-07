@@ -2,12 +2,12 @@
 include ":"
 include ":CordovaLib"
 include 'dconnect-manager'
-project(':dconnect-manager').projectDir = new File('libs/Library/dConnectManager/dConnectManager')
+project(':dconnect-manager').projectDir = new File('libs/DeviceConnect/dConnectManager/dConnectManager')
 include 'dconnect-sdk-for-android'
-project(':dconnect-sdk-for-android').projectDir = new File('libs/Library/dConnectSDK/dConnectSDKForAndroid')
+project(':dconnect-sdk-for-android').projectDir = new File('libs/DeviceConnect/dConnectSDK/dConnectSDKForAndroid')
 include 'dconnect-device-plugin-sdk'
-project(':dconnect-device-plugin-sdk').projectDir = new File('libs/Library/dConnectDevicePlugin/dConnectDevicePluginSDK')
+project(':dconnect-device-plugin-sdk').projectDir = new File('libs/DeviceConnect/dConnectDevicePlugin/dConnectDevicePluginSDK')
 include 'dconnect-server'
-project(':dconnect-server').projectDir = new File('libs/Library/dConnectManager/dConnectServer')
+project(':dconnect-server').projectDir = new File('libs/DeviceConnect/dConnectManager/dConnectServer')
 include 'dconnect-server-nano-httpd'
-project(':dconnect-server-nano-httpd').projectDir = new File('libs/Library/dConnectManager/dConnectServerNanoHttpd')
+project(':dconnect-server-nano-httpd').projectDir = new File('libs/DeviceConnect/dConnectManager/dConnectServerNanoHttpd')
