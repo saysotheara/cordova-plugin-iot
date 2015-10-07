@@ -17,7 +17,7 @@
     </engines>
 
     <js-module src="www/deviceConnect.js" name="DeviceConnect">
-        <clobbers target="monaca.plugins.deviceConnect" />
+        <clobbers target="monaca.plugin.deviceConnect" />
     </js-module>
 
     <!-- android -->
@@ -25,15 +25,15 @@
 
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="DeviceConnect">
-                <param name="android-package" value="io.monaca.plugin.DeviceConnect" />
+                <param name="android-package" value="monaca.plugin.DeviceConnect" />
             </feature>
         </config-file>
 
-        <source-file src="src/android/libs/Library" target-dir="libs"/>
+        <source-file src="src/android/libs/DeviceConnect" target-dir="libs"/>
 
         <hook type="after_plugin_install" src="src/android/libs/after_plugin.js" />
 
-        <source-file src="src/android/io/monaca/plugin/DeviceConnect.java" target-dir="src/io/monaca/plugin" />
+        <source-file src="src/android/monaca/plugin/DeviceConnect.java" target-dir="src/monaca/plugin" />
 
     </platform>
 
