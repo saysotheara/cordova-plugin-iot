@@ -1,9 +1,9 @@
 {
-  "name": "monaca-plugin-deviceconnect",
+  "name": "monaca-plugin-iot",
   "version": "1.0.0",
   "description": "DeviceConnect WebAPI is WebAPI which operates as a virtual server on a smart phone. It can use easily various wearable devices and an IoT device by unific description from a web browser or an application.",
   "cordova": {
-    "id": "monaca-plugin-deviceconnect",
+    "id": "monaca-plugin-iot",
     "platforms": [
       "android"
     ]
