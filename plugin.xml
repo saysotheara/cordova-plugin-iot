@@ -28,27 +28,12 @@
                 <param name="android-package" value="monaca.plugin.DeviceConnect" />
             </feature>
         </config-file>
-<!-- 
-        <source-file src="src/android/libs/dconnect-device-plugin-sdk-release.aar" target-dir="libs"/>
-        <source-file src="src/android/libs/dconnect-sdk-for-android-release.aar" target-dir="libs"/>
-        <source-file src="src/android/libs/dconnect-server-nano-httpd-release.aar" target-dir="libs"/>
-        <source-file src="src/android/libs/dConnectManager-debug.aar" target-dir="libs"/>
-        <source-file src="src/android/libs/dConnectServer-1.0.1.jar" target-dir="libs"/>
- -->
 
-        <!-- <framework src="src/android/dependencies.gradle" type="gradleReference" custom="true"/> -->
-
-<!--         <framework src="src/android/libs/DeviceConnect/dConnectDevicePlugin/dConnectDevicePluginSDK" custom="true"/>
-        <framework src="src/android/libs/DeviceConnect/dConnectManager/dConnectManager" custom="true"/>
-        <framework src="src/android/libs/DeviceConnect/dConnectManager/dConnectServer" custom="true"/>
-        <framework src="src/android/libs/DeviceConnect/dConnectManager/dConnectServerNanoHttpd" custom="true"/>
-        <framework src="src/android/libs/DeviceConnect/dConnectSDK/dConnectSDKForAndroid" custom="true"/>
- -->
- 
-        <source-file src="src/android/libs/DeviceConnect" target-dir="libs"/>
-        <hook type="after_plugin_install" src="src/android/libs/after_plugin.js" />
-
+        <source-file src="src/android/libs/DeviceConnect" target-dir="libs" />
         <source-file src="src/android/monaca/plugin/DeviceConnect.java" target-dir="src/monaca/plugin" />
+
+        <hook type="after_plugin_install" src="src/android/libs/after_plugin_install.js" />
+        <framework src="src/android/libs/build-extras.gradle" type="gradleReference" custom="true" />
 
     </platform>
 
