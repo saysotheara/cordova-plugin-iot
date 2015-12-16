@@ -36,3 +36,7 @@ DeviceConnect RESTful API: https://github.com/DeviceConnect/DeviceConnect-JS/wik
   monaca.plugin.deviceConnect.showPlugins(successCallback, errorCallback);
 
 ```
+
+## Note
+
+DeviceConnect core libraries will be integrated into a Cordova application.

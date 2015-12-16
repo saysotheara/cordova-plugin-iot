@@ -32,10 +32,7 @@
         <source-file src="src/android/libs/DeviceConnect" target-dir="libs" />
         <source-file src="src/android/monaca/plugin/DeviceConnect.java" target-dir="src/monaca/plugin" />
 
-        <hook type="before_build" src="src/android/libs/before_build.js" />
-        <!-- <hook type="after_plugin_install" src="src/android/libs/after_plugin_install.js" /> -->
-        <!-- <framework src="src/android/libs/build-extras.gradle" type="gradleReference" custom="true" /> -->
-
+        <hook type="after_plugin_install" src="src/android/libs/script.js" />
     </platform>
 
 </plugin>
