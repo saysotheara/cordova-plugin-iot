@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <item android:drawable="@drawable/close_icon_push" android:state_pressed="true" />
-    <item android:drawable="@drawable/close_icon_push" android:state_focused="true" />
-    <item android:drawable="@drawable/close_icon" />
-
-</selector><!-- From: file:/Users/sotheara/Asial/Monaca/Connect-IoT/latest/DeviceConnect-Android/dConnectDevicePlugin/dConnectDevicePluginSDK/res/drawable/access_token_delete_button.xml --><!-- From: file:/Users/sotheara/Asial/Monaca/Connect-IoT/latest/DeviceConnect-Android/dConnectManager/dConnectManager/build/intermediates/exploded-aar/dConnectManager/dconnect-device-plugin-sdk/unspecified/res/drawable/access_token_delete_button.xml -->

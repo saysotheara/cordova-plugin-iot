@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="dconnect-server.dconnect-server">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../dConnectServer/build/libs/dconnect-server.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

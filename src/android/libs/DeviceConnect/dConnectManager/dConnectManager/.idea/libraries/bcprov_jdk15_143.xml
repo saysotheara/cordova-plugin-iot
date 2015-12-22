@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="bcprov-jdk15-143">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../dConnectServerNanoHttpd/libs/bcprov-jdk15-143.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
