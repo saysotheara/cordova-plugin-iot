@@ -10,9 +10,9 @@ android {
 }
 
 dependencies {
-    compile project(':dconnect-device-plugin-sdk')
-    compile project(':dconnect-sdk-for-android')
     compile project(':dconnect-server')
     compile project(':dconnect-server-nano-httpd')
+    compile project(':dconnect-sdk-for-android')
+    compile project(':dconnect-device-plugin-sdk')
     compile project(':dconnect-manager')
 }
